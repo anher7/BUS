@@ -15,16 +15,6 @@ public class DB {
             connection = DriverManager.getConnection
                     ("jdbc:mysql://localhost:3306/BUS", "root", "admin");
 
-            String query = "SELECT * FROM users";
-            Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                String username = rs.getString("name");
-                System.out.println(username);
-            }
-
-            connection.close();
-
         } catch (SQLException sqle){
             System.out.println("Sql Exception");
         } catch (ClassNotFoundException notfound){
