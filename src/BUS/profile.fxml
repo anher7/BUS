@@ -5,12 +5,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane fx:id="ProfilePane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Auth">
+<AnchorPane fx:id="ProfilePane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BUS.MainController">
    <children>
       <Pane layoutX="125.0" layoutY="1.0" prefHeight="400.0" prefWidth="350.0">
          <children>
             <Button layoutX="97.0" layoutY="181.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="151.0" text="Catalog" />
-            <Button layoutX="97.0" layoutY="105.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="151.0" text="My Items" />
+            <Button fx:id="myItems" layoutX="97.0" layoutY="105.0" mnemonicParsing="false" onAction="#myItems" prefHeight="39.0" prefWidth="151.0" text="My Items" />
             <Button fx:id="logout" layoutX="97.0" layoutY="257.0" mnemonicParsing="false" onAction="#logout" prefHeight="39.0" prefWidth="151.0" text="Logout" />
             <Label fx:id="pTitle" layoutX="67.0" layoutY="43.0" prefHeight="26.0" prefWidth="211.0" />
             <Label layoutX="125.0" layoutY="313.0" text="VOOR ADMINS" />

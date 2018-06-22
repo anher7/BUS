@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BUS.MyItems">
+   <children>
+      <TableView fx:id="myItemsView" prefHeight="341.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="idCol" prefWidth="75.0" text="Item ID" />
+          <TableColumn fx:id="titleCol" prefWidth="100.0" text="Titel" />
+            <TableColumn fx:id="authCol" prefWidth="100.0" text="Author" />
+            <TableColumn fx:id="avaCol" prefWidth="100.0" text="Beschikbaarheid" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
 </AnchorPane>

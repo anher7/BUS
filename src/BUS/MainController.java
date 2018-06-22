@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class Auth {
+public class MainController {
 
     @FXML
     private TextField _email;

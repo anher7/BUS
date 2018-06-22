@@ -1,4 +1,4 @@
-package sample;
+package BUS;
 
 import java.sql.*;
 
