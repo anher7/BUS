@@ -11,19 +11,19 @@ The rest of the accounts have user functions.
 
 In this version of the project you can do the following:
 
-#admin page:
+# admin page:
 
-####Show all items.
-####Add Item.
-####Add User.
-
-
-#User page:
-
-####Search Items
+#### Show all items.
+#### Add Item.
+#### Add User.
 
 
-#Still TODO:
+# User page:
 
-####reserve Items function.
-####renew Items function.
+#### Search Items
+
+
+# Still TODO:
+
+#### reserve Items function.
+#### renew Items function.
