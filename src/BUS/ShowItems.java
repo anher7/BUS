@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -21,7 +23,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
-public class MyItems implements Initializable {
+public class ShowItems implements Initializable {
 
     ObservableList<Item> list = FXCollections.observableArrayList();
 
@@ -39,6 +41,10 @@ public class MyItems implements Initializable {
 
     @FXML
     private TableColumn<Item, Boolean> avaCol;
+
+    @FXML
+    private AnchorPane showItems;
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
@@ -62,8 +68,6 @@ public class MyItems implements Initializable {
                 Boolean aval = rs.getBoolean("availability");
 
                 list.add(new Item(title, id, author, aval));
-
-                System.out.println(title);
             }
         } catch (SQLException sqle){
             System.out.println(sqle);
@@ -93,20 +97,36 @@ public class MyItems implements Initializable {
         }
 
         public String getTitle() {
+
             return title.get();
         }
 
         public int getId() {
+
             return id.get();
         }
 
-        public String getAuthor() {
+        public String getAuthor()
+        {
+
             return author.get();
         }
 
         public boolean getAvailability() {
+
             return availability.get();
         }
+    }
 
+    @FXML
+    private void back(ActionEvent event) throws Exception{
+        Stage stageOut = (Stage) showItems.getScene().getWindow();
+        stageOut.close();
+        Stage primaryStage2 = new Stage();
+
+        Parent root = FXMLLoader.load(getClass().getResource("adminDB.fxml"));
+        primaryStage2.setTitle("Admin BUS");
+        primaryStage2.setScene(new Scene(root, 400, 475));
+        primaryStage2.show();
     }
 }

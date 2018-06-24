@@ -2,7 +2,10 @@ package BUS;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -11,13 +14,10 @@ import javafx.stage.Stage;
 
 
 import java.net.URL;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ResourceBundle;
 
-public class AddItem implements Initializable {
+public class AddItemsController implements Initializable {
 
     @FXML
     private TextField bTitle;
@@ -29,28 +29,18 @@ public class AddItem implements Initializable {
     private TextField bPub;
 
     @FXML
-    private Button addBook;
-
-    @FXML
-    private Button cancel;
-
-    @FXML
     private AnchorPane ItemPane;
 
-
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
-        checkItem();
-    }
+    public void initialize(URL url, ResourceBundle rb) { }
 
     @FXML
-    private void addBook(ActionEvent event){
+    private void addItem(ActionEvent event){
         String bookTitle = bTitle.getText();
         String bookAuthor = bAuthor.getText();
         String bookPublisher = bPub.getText();
 
-        if (/*bookId.isEmpty() || */bookAuthor.isEmpty() || bookPublisher.isEmpty() || bookTitle.isEmpty()){
+        if (bookAuthor.isEmpty() || bookPublisher.isEmpty() || bookTitle.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setContentText("Vul alle velden in");
@@ -60,16 +50,6 @@ public class AddItem implements Initializable {
 
         try {
 
-//            PreparedStatement stmt = DB.getConnection().
-
-//            String query = "INSERT INTO items VALUES ("+
-//                    "'" + bId +"',"+
-//                    "'" +bookTitle +"',"+
-//                    "'" +bookAuthor +"',"+
-//                    "'" +bookPublisher +"',"+
-//                    "" +1 +"" +
-//                    ")";
-
             String query = "INSERT INTO items(title,author,publisher,Availability) VALUES ("+
                     "'" +bookTitle +"',"+
                     "'" +bookAuthor +"',"+
@@ -78,8 +58,8 @@ public class AddItem implements Initializable {
                     ")";
 
             Statement statement = DB.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-
             statement.executeUpdate(query);
+
             int count = statement.getUpdateCount();
             if (count > 0){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -93,6 +73,11 @@ public class AddItem implements Initializable {
                 alert.showAndWait();
             }
 
+        } catch (SQLIntegrityConstraintViolationException sqli){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("De titel: \'" + bTitle.getText() + "\' bestaat al");
+            alert.showAndWait();
 
         } catch (SQLException sqle){
             System.out.println("SQL ERROR!");
@@ -106,33 +91,5 @@ public class AddItem implements Initializable {
         Stage stage = (Stage) ItemPane.getScene().getWindow();
         stage.close();
 
-    }
-
-    private void checkItem() {
-
-        try {
-
-            String query = "SELECT * FROM items WHERE title = '" + bTitle.getText() + "'";
-            Statement statement = DB.getConnection().createStatement();
-
-            ResultSet rs = statement.executeQuery(query);
-
-            while (rs.next()){
-                String title = rs.getString("title");
-                System.out.println(title);
-
-                if (title.equals(bTitle.getText())){
-                    System.out.println(title);
-
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText(null);
-                    alert.setContentText("De Item! : " + title + "Bestaat al");
-                    alert.showAndWait();
-                }
-            }
-        } catch (SQLException sqle){
-            System.out.println("SQL ERROR!");
-            System.out.println(sqle);
-        }
     }
 }

@@ -5,16 +5,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane fx:id="ProfilePane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BUS.MainController">
+<AnchorPane fx:id="ProfilePane" prefHeight="401.0" prefWidth="393.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BUS.MainController">
    <children>
-      <Pane layoutX="125.0" layoutY="1.0" prefHeight="400.0" prefWidth="350.0">
+      <Pane layoutX="118.0" layoutY="-4.0" prefHeight="401.0" prefWidth="304.0">
          <children>
-            <Button layoutX="97.0" layoutY="181.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="151.0" text="Catalog" />
-            <Button fx:id="myItems" layoutX="97.0" layoutY="105.0" mnemonicParsing="false" onAction="#myItems" prefHeight="39.0" prefWidth="151.0" text="My Items" />
-            <Button fx:id="logout" layoutX="97.0" layoutY="257.0" mnemonicParsing="false" onAction="#logout" prefHeight="39.0" prefWidth="151.0" text="Logout" />
             <Label fx:id="pTitle" layoutX="67.0" layoutY="43.0" prefHeight="26.0" prefWidth="211.0" />
-            <Label layoutX="125.0" layoutY="313.0" text="VOOR ADMINS" />
-            <Button fx:id="addItemB" layoutX="100.0" layoutY="329.0" mnemonicParsing="false" onAction="#addItem" prefHeight="39.0" prefWidth="151.0" text="Item Toevoegen" />
+            <Button fx:id="logout" layoutY="265.0" mnemonicParsing="false" onAction="#logout" prefHeight="39.0" prefWidth="177.0" text="Log uit" />
+
+            <Button layoutY="192.0" mnemonicParsing="false" onAction="#viewCatalog" prefHeight="39.0" prefWidth="177.0" text="Reserveren/verlengen" />
+            <Label fx:id="profileL" alignment="CENTER" layoutX="20.0" layoutY="48.0" prefHeight="16.0" prefWidth="76.0" />
          </children>
       </Pane>
    </children>
